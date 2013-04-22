@@ -40,9 +40,9 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 
 ## Commands to refresh the tracking database with data from iRODS ##
 
-<script>
-	mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
-</script>
+	<script>
+		mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
+	</script>
 
 To update gtc files:
 	<script>
