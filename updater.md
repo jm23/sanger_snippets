@@ -45,21 +45,21 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 </script>
 
 To update gtc files:
-<script>
-	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
-</script>
+	<script>
+		/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
+	</script>
 
 To update idat files:
-<script>
-	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
-</script>
+	<script>
+		/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
+	</script>
 
 
 ## Example metadata from a gtc file in iRODS ##
 
-<script>
-	imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
-</script>
+	<script>
+		imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
+	</script>
 
 AVUs defined for dataObj /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc:
 attribute: dcterms:identifier
