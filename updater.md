@@ -13,54 +13,53 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 
 | Table		|	Parameter (column)		|	iRODS metadata / file name		|	Comments |
 | :----------------------	| :--------------------------	| :----------------------------------	| :--------------------------------------------
-| project		|	ssid	| |	study_id |	|
+| project		|	ssid |	study_id |	|
 | |	name	|		study_title | |
 | | hierarchy_name	|		study_title | |
-
-sample											Mapped to project via project_id
-		ssid				sample_id				
-		name				sample
-		hierarchy_name			sample		
-
-library											Mapped to sample via sample_id and individual via individual_id
-		ssid				portions of beadchip and sample_id		Constructed from last 4 digits of beadchip and last 3 digits of sample_id
-		name				beadchip and sample_id			(beadchip)_(sample_id), e.g. 9274735028_1559359 -> unique combo		
-		hierarchy_name			beadchip and sample_id			(beadchip)_(sample_id), e.g. 9274735028_1559359 -> unique combo
-											NOTE: beadchip id is not unique per sample, so it is made this way by appending the sample_ssid	
-
-lane											Mapped to library via library_id
-		name				file name without extension		E.g. 9273354128_R01C02. This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample.
-		hierarchy_name			file name without extension		The beadchip_section is not yet deployed on the metadata, but will be used in future.	
-		accession            dcterms:identifier                E.g. 271298_B03_hipscigt5466711							
+| sample | ssid	|			sample_id	| |			
+| |		name	|			sample | |
+| |		hierarchy_name		|	sample	| |	
+| library	| ssid			|	beadchip and sample_id	|	Last 4 digits of beadchip + last 3 digits of sample_id |
+| |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [^1] | |		
+| |		hierarchy_name		|	beadchip and sample_id		|	As above | |
+| lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [^2] | |
+| |		hierarchy_name		|	file name without extension | As above |			
+| |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [^3] | |							
+| file	| name				| file name | |
+| |		hierarchy_name		|	As above | | 
+| |		md5		|		md5	| |	
+| individual | name		|		supplier_name from warehouse | |
+| |		hierarchy_name	|		As above | |
+| |		acc			|	sample | |
 		
-file											Mapped to lane via lane_id
-		name				file name
-		hierarchy_name			file_name
-		md5				md5		
-		
-individual										
-		name				supplier_name from warehouse
-		hierarchy_name			supplier_name from warehouse
-		acc				sample
-		
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-COMMANDS to refresh the tracking database with data from iRODS:
+[^1]: Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
+[^2]: This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
+[^3]: This is the plate barcode and map location for the genotyping(?) well.
 
-mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
+
+## Commands to refresh the tracking database with data from iRODS ##
+
+<script>
+	mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
+</script>
 
 To update gtc files:
-/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
+<script>
+	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
+</script>
 
 To update idat files:
-/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
+<script>
+	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
+</script>
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-EXAMPLE METADATA from gtc file in iRODS:
-[NOTE - NOT complete metadata as the latest versions will have beadchip_design and beadchip_section, so the construction of 'lane' data will be less terse) ]
+## Example metadata from a gtc file in iRODS ##
 
-imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
+<script>
+	imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
+</script>
 
 AVUs defined for dataObj /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc:
 attribute: dcterms:identifier
@@ -123,35 +122,3 @@ attribute: dcterms:identifier
 value: 271298_G01_hipscigt5466712
 units: 
 
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-*NOTE: This is taken from Keith James' git repository and has yet to be implemented (the GenomeStudio files, which will be csv(?) are not yet in iRODS AFAIK), 
-        as the 'old' gtc and idat files do not have beadchip_design and beadchip_section.
-
-iRODS sample-level metadata
---------------------------------------------
-
-These metadata are attached to each iRODS data object that represents a biological sample.
-
-Metadata keys and values
-
-Tag	Value	Value source	Value type
-sample			Sanger sample name		S2 current_samples.name			String
-sample_id		Sanger sample ID		S2 current_samples.internal_id		Integer
-sample_common_name	Sample common name		S2 current_samples.common_name		String
-sample_accession_number	Sample accession number		S2 current_samples.accession number	String
-sample_consent		Consent exists			S2 current_samples.consent_withdrawn	Integer [1]
-study_id			S2 study ID			S2 current_studies.internal_id		Integer
-study_title		S2 study title			S2 current_studies.study_title		String
-dcterms:creator		Entity making the data		Data provider				URI e.g. http://www.sanger.ac.uk
-dcterms:created		Date stored in iRODS		Publisher (machine or person)		ISO8601 format date
-dcterms:publisher		Entity publishing into iRODS	Publisher (machine or person)		URI e.g. URI of entity in Sanger LDAP
-dcterms:modified		Date last modified in iRODS	Updater (machine or person)		ISO8601 format date
-dcterms:identifier		Various				Various					Variable [2]
-dcterms:title		Genotyping project title		Illumina Infinium LIMS			String
-beadchip		Unique Beadchip number		Illumina Infinium LIMS			Integer
-beadchip_design		Beadchip chip design name	Illumins Infinium LIMS			String
-beadchip_section		Beadchip section row/column	Illumina Infinium LIMS			String
-md5			MD5 checksum of data		Publisher				String
-type			Data type/format			Publisher				String e.g. gtc, idat
