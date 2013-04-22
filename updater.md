@@ -1,10 +1,21 @@
-POPULATION of the tracking database (currently vrtrack_hipsci_qc1_pilot) for HipSci microarray and genotype files, based on the iRODS metadata as described below.
+Title:   HipSci Q1 pilot tracking updater from iRODS metadata
+Author:  John Maslen
+Date:    Mon 22 Apr 2013
+Version: 1.0
+Comment: This document describes the sample-level metadata used to populate the tracking database for the HipSci pilot project
 
-Table		Parameter (column)		iRODS metadata / file name		Comments
-project
-		ssid				study_id
-		name				study_title
-		hierarchy_name			study_title
+## Tracking database updater from iRODS metadata ##
+
+The updater currently works on the pilot idat and gtc files available in iRODS to populate the HipSci tracking database, which is vrtrack_hipsci_q1_pilot. It has been created to also work with tsv/csv files as they become available, as we anticipate that the metadata will be available for these files in iRODS, with the addition of cell line/type information that will probably be associated with the lane data.
+
+## Database tables and iRODS metadata keys ##
+
+
+| Table		|	Parameter (column)		|	iRODS metadata / file name		|	Comments |
+| :----------------------	| :--------------------------	| :----------------------------------	| :--------------------------------------------
+| project		|	ssid	| |	study_id |	|
+| |	name	|		study_title | |
+| | hierarchy_name	|		study_title | |
 
 sample											Mapped to project via project_id
 		ssid				sample_id				
@@ -19,7 +30,8 @@ library											Mapped to sample via sample_id and individual via individual_i
 
 lane											Mapped to library via library_id
 		name				file name without extension		E.g. 9273354128_R01C02. This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample.
-		hierarchy_name			file name without extension		The beadchip_section is not yet deployed on the metadata, but will be used in future.								
+		hierarchy_name			file name without extension		The beadchip_section is not yet deployed on the metadata, but will be used in future.	
+		accession            dcterms:identifier                E.g. 271298_B03_hipscigt5466711							
 		
 file											Mapped to lane via lane_id
 		name				file name
