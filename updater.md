@@ -34,9 +34,9 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 		
 
 ####Notes####
--[1] Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
--[2] This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
--[3] This is the plate barcode and map location for the genotyping(?) well.
+- [1] Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
+- [2] This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
+- [3] This is the plate barcode and map location for the genotyping(?) well.
 
 
 ## Commands to refresh the tracking database with data from iRODS ##
