@@ -40,14 +40,14 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 
 ## Commands to refresh the tracking database with data from iRODS ##
 
-	<script>
-		mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
-	</script>
+```
+	mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
+```
 
 To update gtc files:
-	<script>
-		/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
-	</script>
+```
+	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
+```
 
 To update idat files:
 	<script>
@@ -61,6 +61,7 @@ To update idat files:
 		imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
 	</script>
 
+```
 AVUs defined for dataObj /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc:
 attribute: dcterms:identifier
 value: hipscigt5466712
@@ -121,4 +122,4 @@ units:
 attribute: dcterms:identifier
 value: 271298_G01_hipscigt5466712
 units: 
-
+```
