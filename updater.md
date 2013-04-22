@@ -21,15 +21,15 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 | |		hierarchy_name		|	sample	| |	
 | library	| ssid			|	beadchip and sample_id	|	Last 4 digits of beadchip + last 3 digits of sample_id |
 | |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [1] | |		
-| |		hierarchy_name		|	beadchip and sample_id		|	as above | |
+| |		hierarchy_name		|	beadchip and sample_id		|	(beadchip)_(sample_id), e.g. 9274735028_1559359 | |
 | lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [2] | |
-| |		hierarchy_name		|	file name without extension | as above |			
+| |		hierarchy_name		|	file name without extension | E.g. 9273354128_R01C02. |			
 | |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [3] | |							
 | file	| name				| file name | |
-| |		hierarchy_name		|	as above | | 
+| |		hierarchy_name		|	file name | | 
 | |		md5		|		md5	| |	
 | individual | name		|		supplier_name from warehouse | |
-| |		hierarchy_name	|		as above | |
+| |		hierarchy_name	|		supplier_name from warehouse | |
 | |		acc			|	sample | |
 		
 
