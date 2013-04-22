@@ -21,22 +21,22 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 | |		hierarchy_name		|	sample	| |	
 | library	| ssid			|	beadchip and sample_id	|	Last 4 digits of beadchip + last 3 digits of sample_id |
 | |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [1] | |		
-| |		hierarchy_name		|	beadchip and sample_id		|	As above | |
+| |		hierarchy_name		|	beadchip and sample_id		|	as above | |
 | lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [2] | |
-| |		hierarchy_name		|	file name without extension | As above |			
+| |		hierarchy_name		|	file name without extension | as above |			
 | |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [3] | |							
 | file	| name				| file name | |
-| |		hierarchy_name		|	As above | | 
+| |		hierarchy_name		|	as above | | 
 | |		md5		|		md5	| |	
 | individual | name		|		supplier_name from warehouse | |
-| |		hierarchy_name	|		As above | |
+| |		hierarchy_name	|		as above | |
 | |		acc			|	sample | |
 		
 
 ####Notes####
-[1] Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
-[2] This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
-[3] This is the plate barcode and map location for the genotyping(?) well.
+-[1] Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
+-[2] This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
+-[3] This is the plate barcode and map location for the genotyping(?) well.
 
 
 ## Commands to refresh the tracking database with data from iRODS ##
