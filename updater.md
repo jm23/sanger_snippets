@@ -20,11 +20,11 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 | |		name	|			sample | |
 | |		hierarchy_name		|	sample	| |	
 | library	| ssid			|	beadchip and sample_id	|	Last 4 digits of beadchip + last 3 digits of sample_id |
-| |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [^1] | |		
+| |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [1] | |		
 | |		hierarchy_name		|	beadchip and sample_id		|	As above | |
-| lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [^2] | |
+| lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [2] | |
 | |		hierarchy_name		|	file name without extension | As above |			
-| |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [^3] | |							
+| |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [3] | |							
 | file	| name				| file name | |
 | |		hierarchy_name		|	As above | | 
 | |		md5		|		md5	| |	
@@ -33,33 +33,33 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 | |		acc			|	sample | |
 		
 
-[^1]: Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
-[^2]: This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
-[^3]: This is the plate barcode and map location for the genotyping(?) well.
+####Notes####
+[1] Beadchip id is not unique per sample, so it is made this way by appending the sample_ssid.
+[2] This is a combination of beadchip and beadchip_section, which gives a unique coordinate per sample. The beadchip_section is not yet deployed on the metadata, but will be used in future.
+[3] This is the plate barcode and map location for the genotyping(?) well.
 
 
 ## Commands to refresh the tracking database with data from iRODS ##
 
 ```
-	mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
+mysql -u $VRTRACK_RW_USER -hmcs10 -p$VRTRACK_PASSWORD vrtrack_hipsci_qc1_pilot < /lustre/scratch106/user/jm23/vrtrack_schema.sql
 ```
 
 To update gtc files:
 ```
-	/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
+/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f gtc
 ```
 
 To update idat files:
-	<script>
-		/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
-	</script>
-
+```
+/software/vertres/bin-external/update_pipeline_hipsci/update_pipeline.pl -s $CONF/vrtrack_hipsci_qc1_pilot_studies -d vrtrack_hipsci_qc1_pilot -v -tax 9606 -sup -f idat
+```
 
 ## Example metadata from a gtc file in iRODS ##
 
-	<script>
-		imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
-	</script>
+```
+imeta ls -d /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc 
+```
 
 ```
 AVUs defined for dataObj /archive/GAPI/gen/infinium/f9/7a/42/9273354121_R01C02.gtc:
