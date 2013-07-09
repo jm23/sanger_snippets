@@ -17,14 +17,14 @@ The updater currently works on the pilot idat and gtc files available in iRODS t
 | |	name	|		study_title | |
 | | hierarchy_name	|		study_title | |
 | sample | ssid	|			sample_id	| |			
-| |		name	|			sample | |
-| |		hierarchy_name		|	sample	| |	
+| |		name	|			dcterms:identifier	 | E.g. 271298_B03_hipscigt5466711 [3] |
+| |		hierarchy_name		|	dcterms:identifier	 | |	
 | library	| ssid			|	beadchip and sample_id	|	Last 4 digits of beadchip + last 3 digits of sample_id |
 | |		name |				beadchip and sample_id	|		(beadchip)_(sample_id), e.g. 9274735028_1559359 [1] | |		
 | |		hierarchy_name		|	beadchip and sample_id		|	(beadchip)_(sample_id), e.g. 9274735028_1559359 | |
 | lane	|	name		|	file name without extension	|	E.g. 9273354128_R01C02. [2] | |
 | |		hierarchy_name		|	file name without extension | E.g. 9273354128_R01C02. |			
-| |		accession           |  dcterms:identifier    |            E.g. 271298_B03_hipscigt5466711 [3] | |							
+| |		accession           |  analysis_uuid   |  This links the binary files to the Genome Studio genotyping tsv file | |							
 | file	| name				| file name | |
 | |		hierarchy_name		|	file name | | 
 | |		md5		|		md5	| |	
